@@ -1,0 +1,11 @@
+{
+  "name": "autogacha",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "repository": "https://github.com/narze/autogacha",
+  "author": "narze",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}
