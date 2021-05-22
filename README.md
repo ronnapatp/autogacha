@@ -23,7 +23,7 @@ https://id.twitch.tv/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR
 - Authenticate then get Authorization Code via `code` query string after redirect
 
 ```plaintext
-http://localhost/oauth?code=y7uz4hma3qfo3cyzak4grclvlye7us&scope=chat%3Aread+chat%3Aedit
+http://localhost/oauth?code=YOUR_AUTH_CODE&scope=chat%3Aread+chat%3Aedit
 ```
 
 1. Get OAuth Access Token & Refresh Token
