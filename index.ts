@@ -31,7 +31,7 @@ async function main() {
 
   const chatClient = new ChatClient(auth, { channels: [channel] })
 
-  let amount: number | null = 1
+  let amount: number | string = 1
 
   chatClient.onConnect(async () => {
     console.log("CONNECTED", { channel })
@@ -49,7 +49,7 @@ async function main() {
 
       // Swap amount to prevent duplicated message
       if (amount == 1) {
-        amount = null
+        amount = ""
       } else {
         amount = 1
       }
