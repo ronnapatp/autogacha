@@ -37,12 +37,13 @@ async function main() {
     console.log("CONNECTED", { channel })
 
     setInterval(async () => {
-      await chatClient.say(channel, `!gacha ${amount}`).then(
+      const message = `!gacha ${amount}`
+      await chatClient.say(channel, message).then(
         () => {
-          console.log("Sent")
+          console.log("Sent", { message })
         },
         (reason) => {
-          console.error("Not sent", reason)
+          console.error("Not sent", { reason })
         }
       )
 
