@@ -7,6 +7,8 @@ dotenv.config({
   default_node_env: "development",
 })
 
+const gachaIntervalMs = 30000
+
 const clientId = process.env.CLIENT_ID as string
 const clientSecret = process.env.CLIENT_SECRET as string
 const channel = process.env.CHANNEL as string
@@ -28,36 +30,32 @@ async function main() {
   )
 
   const chatClient = new ChatClient(auth, { channels: [channel] })
-  await chatClient.connect()
 
-  chatClient.onMessage((channel, user, message) => {
-    console.log({ user, message, channel })
-    // if (message === "!ping") {
-    //   chatClient.say(channel, "Pong!")
-    // } else if (message === "!dice") {
-    //   const diceRoll = Math.floor(Math.random() * 6) + 1
-    //   chatClient.say(channel, `@${user} rolled a ${diceRoll}`)
-    // }
+  let amount: number | null = 1
+
+  chatClient.onConnect(async () => {
+    console.log("CONNECTED", { channel })
+
+    setInterval(async () => {
+      await chatClient.say(channel, `!gacha ${amount}`).then(
+        () => {
+          console.log("Sent")
+        },
+        (reason) => {
+          console.error("Not sent", reason)
+        }
+      )
+
+      // Swap amount to prevent duplicated message
+      if (amount == 1) {
+        amount = null
+      } else {
+        amount = 1
+      }
+    }, gachaIntervalMs)
   })
 
-  // chatClient.onSub((channel, user) => {
-  //   chatClient.say(
-  //     channel,
-  //     `Thanks to @${user} for subscribing to the channel!`
-  //   )
-  // })
-  // chatClient.onResub((channel, user, subInfo) => {
-  //   chatClient.say(
-  //     channel,
-  //     `Thanks to @${user} for subscribing to the channel for a total of ${subInfo.months} months!`
-  //   )
-  // })
-  // chatClient.onSubGift((channel, user, subInfo) => {
-  //   chatClient.say(
-  //     channel,
-  //     `Thanks to ${subInfo.gifter} for gifting a subscription to ${user}!`
-  //   )
-  // })
+  await chatClient.connect()
 }
 
 main()
