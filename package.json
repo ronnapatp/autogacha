@@ -5,7 +5,15 @@
   "repository": "https://github.com/narze/autogacha",
   "author": "narze",
   "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --exit-child --respawn ."
+  },
   "devDependencies": {
+    "ts-node-dev": "^1.1.6",
     "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "@twurple/auth": "^5.0.0-pre.6",
+    "@twurple/chat": "^5.0.0-pre.6"
   }
 }
