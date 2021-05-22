@@ -1,0 +1,7 @@
+{
+  "accessToken": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "refreshToken": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "scope": ["chat:edit", "chat:read"],
+  "expiresIn": 0,
+  "obtainmentTimestamp": 0
+}
