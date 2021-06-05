@@ -7,7 +7,7 @@ dotenv.config({
   default_node_env: "development",
 })
 
-const gachaIntervalMs = 30000
+const gachaIntervalMs = 180 * 1000
 
 const clientId = process.env.CLIENT_ID as string
 const clientSecret = process.env.CLIENT_SECRET as string
@@ -49,7 +49,7 @@ async function main() {
 
       // Swap amount to prevent duplicated message
       if (amount == 1) {
-        amount = ""
+        amount = "(github.com/narze/autogacha)"
       } else {
         amount = 1
       }
