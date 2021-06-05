@@ -8,12 +8,19 @@ dotenv.config({
 })
 
 const gachaIntervalMs = 180 * 1000
+const stopTime = 2 * 60 * 60 * 1000
+let running = true
 
 const clientId = process.env.CLIENT_ID as string
 const clientSecret = process.env.CLIENT_SECRET as string
 const channel = process.env.CHANNEL as string
 
 async function main() {
+  setTimeout(() => {
+    console.log("Stopped")
+    running = false
+  }, stopTime)
+
   const tokenData = JSON.parse(await fs.readFile("./tokens.json", "utf-8"))
   const auth = new RefreshingAuthProvider(
     {
@@ -37,6 +44,10 @@ async function main() {
     console.log("CONNECTED", { channel })
 
     setInterval(async () => {
+      if (!running) {
+        return
+      }
+
       const message = `!gacha ${amount}`
       await chatClient.say(channel, message).then(
         () => {
