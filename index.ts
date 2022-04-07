@@ -7,7 +7,7 @@ dotenv.config({
   default_node_env: "development",
 })
 
-const gachaIntervalMs = 180 * 1000
+const gachaIntervalMs = 40000
 const stopTime = 2 * 60 * 60 * 1000
 let running = true
 
@@ -60,7 +60,7 @@ async function main() {
 
       // Swap amount to prevent duplicated message
       if (amount == 1) {
-        amount = "(github.com/narze/autogacha)"
+        amount = 2
       } else {
         amount = 1
       }
