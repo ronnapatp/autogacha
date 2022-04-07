@@ -7,7 +7,7 @@ dotenv.config({
   default_node_env: "development",
 })
 
-const gachaIntervalMs = 40000
+const gachaIntervalMs = 50000
 const stopTime = 2 * 60 * 60 * 1000
 let running = true
 
