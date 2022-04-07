@@ -112,4 +112,4 @@ dist
 .pnp.*
 
 tokens.json
-.env*.local
+.env
