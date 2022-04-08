@@ -1,8 +1,0 @@
-Dockerfile
-
-# Ignore .git folder
-.git
-
-node_modules/
-
-.env
