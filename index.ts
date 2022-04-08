@@ -8,7 +8,7 @@ dotenv.config({
 })
 
 const gachaIntervalMs = 50000
-const farmIntervalMs = 310000
+const farmIntervalMs = 304000
 const stopTime = 2 * 60 * 60 * 1000
 let running = true
 
