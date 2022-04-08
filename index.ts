@@ -59,7 +59,7 @@ async function main() {
       //   }
       // )
 
-      const message = `!gacha ${amount}`
+      const message = `!invest ${amount}`
       await chatClient.say(channel, message).then(
         () => {
           console.log("Sent", message )
