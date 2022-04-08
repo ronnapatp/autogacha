@@ -71,7 +71,7 @@ async function main() {
 
       // Swap amount to prevent duplicated message
       if (amount == 1) {
-        amount = 2
+        amount = 'narzelAmogus'
       } else {
         amount = 1
       }
