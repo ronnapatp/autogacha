@@ -1,7 +1,7 @@
 FROM node:16-alpine
 
 # Set working directory
-WORKDIR /autogacha
+# WORKDIR /autogacha
 
 # Add package.json to WORKDIR and install dependencies
 RUN npm install
