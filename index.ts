@@ -8,6 +8,7 @@ dotenv.config({
 })
 
 const gachaIntervalMs = 50000
+const farmIntervalMs = 500000
 const stopTime = 2 * 60 * 60 * 1000
 let running = true
 
@@ -43,15 +44,25 @@ async function main() {
   chatClient.onConnect(async () => {
     console.log("CONNECTED", { channel })
 
+    
     setInterval(async () => {
       if (!running) {
         return
       }
+      // const hi = `Gacha Bot just join the chat!`
+      // await chatClient.say(channel, hi).then(
+      //   () => {
+      //     console.log("Sent", hi )
+      //   },
+      //   (reason) => {
+      //     console.error("Not sent", { reason })
+      //   }
+      // )
 
       const message = `!gacha ${amount}`
       await chatClient.say(channel, message).then(
         () => {
-          console.log("Sent", { message })
+          console.log("Sent", message )
         },
         (reason) => {
           console.error("Not sent", { reason })
@@ -65,6 +76,32 @@ async function main() {
         amount = 1
       }
     }, gachaIntervalMs)
+
+    setInterval(async () => {
+      if (!running) {
+        return
+      }
+      // const hi = `Gacha Bot just join the chat!`
+      // await chatClient.say(channel, hi).then(
+      //   () => {
+      //     console.log("Sent", hi )
+      //   },
+      //   (reason) => {
+      //     console.error("Not sent", { reason })
+      //   }
+      // )
+
+      const message = `!farm`
+      await chatClient.say(channel, message).then(
+        () => {
+          console.log("Sent", { message } )
+        },
+        (reason) => {
+          console.error("Not sent", { reason })
+        }
+      )
+
+    }, farmIntervalMs)
   })
 
   await chatClient.connect()
