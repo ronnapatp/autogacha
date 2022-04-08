@@ -1,17 +1,28 @@
 FROM node:16-alpine
 
 # Set working directory
-# WORKDIR /autogacha
+WORKDIR /app
 
 # Add package.json to WORKDIR and install dependencies
-RUN npm install
+COPY package*.json ./
+COPY yarn.lock ./
+COPY .env ./
+COPY tokens.json ./
+COPY index.ts ./
+RUN yarn
+
+# Add source code files to WORKDIR
+COPY . .
+
+# Application port (optional)
+# EXPOSE 3000
 
 # Debugging port (optional)
 # For remote debugging, add this port to devspace.yaml: dev.ports[*].forward[*].port: 9229
 # EXPOSE 9229
 
 # Container start command (DO NOT CHANGE and see note below)
-CMD ["npm","run","dev"]
+CMD ["yarn" , "dev"]
 
 # To start using a different `npm run [name]` command (e.g. to use nodemon + debugger),
 # edit devspace.yaml:
