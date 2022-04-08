@@ -4,22 +4,14 @@ FROM node:16-alpine
 WORKDIR /app
 
 # Add package.json to WORKDIR and install dependencies
-COPY package*.json ./
-COPY yarn.lock ./
-RUN yarn install
-
-# Add source code files to WORKDIR
-COPY . .
-
-# Application port (optional)
-EXPOSE 3000
+RUN npm install
 
 # Debugging port (optional)
 # For remote debugging, add this port to devspace.yaml: dev.ports[*].forward[*].port: 9229
 # EXPOSE 9229
 
 # Container start command (DO NOT CHANGE and see note below)
-CMD ["yarn", "dev"]
+CMD ["npm","run","dev"]
 
 # To start using a different `npm run [name]` command (e.g. to use nodemon + debugger),
 # edit devspace.yaml:
