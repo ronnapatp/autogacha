@@ -8,6 +8,7 @@ dotenv.config({
 })
 
 const gachaIntervalMs = 50000
+const investIntervalMs = 60000
 const farmIntervalMs = 304000
 const stopTime = 2 * 60 * 60 * 1000
 let running = true
@@ -37,6 +38,10 @@ async function main() {
     tokenData
   )
 
+  function randomIntFromInterval(min, max) { 
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+
   const chatClient = new ChatClient(auth, { channels: [channel] })
 
   let amount: number | string = 1
@@ -49,20 +54,30 @@ async function main() {
       if (!running) {
         return
       }
-      // const hi = `Gacha Bot just join the chat!`
-      // await chatClient.say(channel, hi).then(
-      //   () => {
-      //     console.log("Sent", hi )
-      //   },
-      //   (reason) => {
-      //     console.error("Not sent", { reason })
-      //   }
-      // )
-
-      const message = `!invest ${amount}`
-      await chatClient.say(channel, message).then(
+      
+      const amounts = randomIntFromInterval(2, 10)
+      const invest = `!invest ${amounts}`
+      await chatClient.say(channel, invest).then(
         () => {
-          console.log("Sent", message )
+          console.log("Sent", { invest } )
+        },
+        (reason) => {
+          console.error("Not sent", { reason })
+        }
+        )
+        
+      }, investIntervalMs)
+      
+      
+      setInterval(async () => {
+        if (!running) {
+        return
+      }
+
+      const gacha = `!gacha ${amount}`
+      await chatClient.say(channel, gacha).then(
+        () => {
+          console.log("Sent", { gacha } )
         },
         (reason) => {
           console.error("Not sent", { reason })
@@ -81,15 +96,6 @@ async function main() {
       if (!running) {
         return
       }
-      // const hi = `Gacha Bot just join the chat!`
-      // await chatClient.say(channel, hi).then(
-      //   () => {
-      //     console.log("Sent", hi )
-      //   },
-      //   (reason) => {
-      //     console.error("Not sent", { reason })
-      //   }
-      // )
 
       const message = `!farm`
       await chatClient.say(channel, message).then(
