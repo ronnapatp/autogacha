@@ -39,7 +39,7 @@ async function main() {
   )
 
   function randomIntFromInterval() { 
-    return Math.floor(Math.random() * (11 - 2 + 1) + 2)
+    return Math.floor(Math.random() * (15 - 2 + 1) + 2)
   }
 
   const chatClient = new ChatClient(auth, { channels: [channel] })
@@ -69,29 +69,6 @@ async function main() {
       }, investIntervalMs)
       
       
-      setInterval(async () => {
-        if (!running) {
-        return
-      }
-
-      const gacha = `!gacha ${amount}`
-      await chatClient.say(channel, gacha).then(
-        () => {
-          console.log("Sent", { gacha } )
-        },
-        (reason) => {
-          console.error("Not sent", { reason })
-        }
-      )
-
-      // Swap amount to prevent duplicated message
-      if (amount == 1) {
-        amount = 'narzelAmogus'
-      } else {
-        amount = 1
-      }
-    }, gachaIntervalMs)
-
     setInterval(async () => {
       if (!running) {
         return
