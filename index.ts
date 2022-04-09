@@ -7,7 +7,6 @@ dotenv.config({
   default_node_env: "development",
 })
 
-const gachaIntervalMs = 50000
 const investIntervalMs = 60000
 const farmIntervalMs = 304000
 const stopTime = 2 * 60 * 60 * 1000
@@ -43,8 +42,6 @@ async function main() {
   }
 
   const chatClient = new ChatClient(auth, { channels: [channel] })
-
-  let amount: number | string = 1
 
   chatClient.onConnect(async () => {
     console.log("CONNECTED", { channel })
