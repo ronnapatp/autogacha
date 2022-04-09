@@ -38,8 +38,8 @@ async function main() {
     tokenData
   )
 
-  function randomIntFromInterval(min, max) { 
-    return Math.floor(Math.random() * (max - min + 1) + min)
+  function randomIntFromInterval() { 
+    return Math.floor(Math.random() * (11 - 2 + 1) + 2)
   }
 
   const chatClient = new ChatClient(auth, { channels: [channel] })
@@ -55,7 +55,7 @@ async function main() {
         return
       }
       
-      const amounts = randomIntFromInterval(2, 10)
+      const amounts = randomIntFromInterval()
       const invest = `!invest ${amounts}`
       await chatClient.say(channel, invest).then(
         () => {
