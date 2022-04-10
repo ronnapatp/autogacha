@@ -38,7 +38,7 @@ async function main() {
   )
 
   function randomIntFromInterval() { 
-    return Math.floor(Math.random() * (15 - 2 + 1) + 2)
+    return Math.floor(Math.random() * (27 - 7 + 1) + 7)
   }
 
   const chatClient = new ChatClient(auth, { channels: [channel] })
