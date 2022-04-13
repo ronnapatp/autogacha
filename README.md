@@ -34,13 +34,10 @@ Periodically play `!gacha` on 9arm channel
      https://id.twitch.tv/oauth2/token?client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET&code=YOUR_AUTH_CODE&grant_type=authorization_code&redirect_uri=YOUR_REDIRECT_URL
      ```
 
-     example
-     
+   - Request tokens from URL above via `POST` request (Use `Postman`, `Insomnia`, `cURL`, `wget`, etc.)
      ```zsh
      curl -X POST 'https://id.twitch.tv/oauth2/token?client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET&code=YOUR_AUTH_CODE&grant_type=authorization_code&redirect_uri=YOUR_REDIRECT_URL'
      ```
-
-   - Request tokens from URL above via `POST` request (Use `Postman`, `Insomnia`, `cURL`, `wget`, etc.)
    - You'll get `access_token` & `refresh_token` via JSON
 
      ```json
