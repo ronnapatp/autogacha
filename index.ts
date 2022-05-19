@@ -15,6 +15,8 @@ let running = true;
 const clientId = process.env.CLIENT_ID as string;
 const clientSecret = process.env.CLIENT_SECRET as string;
 const channel = process.env.CHANNEL as string;
+const invest = `!invest narzelAmogus`;
+const message = `!farm`;
 
 async function main() {
   setTimeout(() => {
@@ -37,11 +39,25 @@ async function main() {
     tokenData
   );
 
-  function randomIntFromInterval() {
-    return Math.floor(Math.random() * (5 - 1 + 1) + 1);
-  }
-
   const chatClient = new ChatClient(auth, { channels: [channel] });
+
+  await chatClient.say(channel, invest).then(
+    () => {
+      console.log("Sent", { invest });
+    },
+    (reason) => {
+      console.error("Not sent", { reason });
+    }
+  );
+
+  await chatClient.say(channel, message).then(
+    () => {
+      console.log("Sent", { message });
+    },
+    (reason) => {
+      console.error("Not sent", { reason });
+    }
+  );
 
   chatClient.onConnect(async () => {
     console.log("CONNECTED", { channel });
@@ -51,9 +67,6 @@ async function main() {
         return;
       }
 
-      const amounts = randomIntFromInterval();
-      console.log(amounts);
-      const invest = `!invest narzelAmogus`;
       await chatClient.say(channel, invest).then(
         () => {
           console.log("Sent", { invest });
@@ -69,7 +82,6 @@ async function main() {
         return;
       }
 
-      const message = `!farm`;
       await chatClient.say(channel, message).then(
         () => {
           console.log("Sent", { message });
