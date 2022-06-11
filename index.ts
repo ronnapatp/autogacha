@@ -2,6 +2,7 @@ import { RefreshingAuthProvider } from "@twurple/auth";
 import { ChatClient } from "@twurple/chat";
 import { promises as fs } from "fs";
 import dotenv from "dotenv-flow";
+import axios from 'axios'
 
 dotenv.config({
   default_node_env: "development",
@@ -17,6 +18,16 @@ const clientSecret = process.env.CLIENT_SECRET as string;
 const channel = process.env.CHANNEL as string;
 const invest = `!invest narzelAmogus`;
 const message = `!farm`;
+
+axios.get('https://tmi.twitch.tv/group/user/narzelive/chatters')
+  .then(function (response) {
+    const broadcaster = response.data.chatters.broadcaster
+    if( broadcaster !== `["narzeLive"]` ){
+      running = false
+    } else {
+      running = true
+    }
+});
 
 async function main() {
   setTimeout(() => {
