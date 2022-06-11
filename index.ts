@@ -40,25 +40,6 @@ async function main() {
   );
 
   const chatClient = new ChatClient(auth, { channels: [channel] });
-
-  await chatClient.say(channel, invest).then(
-    () => {
-      console.log("Sent", { invest });
-    },
-    (reason) => {
-      console.error("Not sent", { reason });
-    }
-  );
-
-  await chatClient.say(channel, message).then(
-    () => {
-      console.log("Sent", { message });
-    },
-    (reason) => {
-      console.error("Not sent", { reason });
-    }
-  );
-
   chatClient.onConnect(async () => {
     console.log("CONNECTED", { channel });
 
